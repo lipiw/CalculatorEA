@@ -1,19 +1,17 @@
 
 public class Programa{
-    public String exp;
-    
-    static void Main(string [] args)
+
+    static void Main(string [] args) throws Exception
     {
         Calculadora c = new Calculadora();
         
         System.out.println ("Digite a expressão:");
+
+        if(exp == null)
+        throw new Exception("Nenhuma expressão declarada");
         
         this.exp = exp.replaceAll(" ","");
         
-        while (quebrador.hasMoreTokens())
-        {
-            System.out.println(quebrador.nextToken());
-        }
     }
     
      Pilha<String> pilhaString = new Pilha<String>();
