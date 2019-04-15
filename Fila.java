@@ -4,46 +4,33 @@ public class Fila <X>
     private int ultimo;
     private int primeiro= -1;
 
-    public Fila (int tamanho) throws Exception
+    public Fila (int tamanho) 
     {
-        if(tamanho<1)
-            throw new Exception ("Tamanho invalido");
         this.fila = new Object[tamanho];
         this.ultimo = this.fila[tamanho];
         this.primeiro = this.fila[0];
        
     }
-    public void guarde(X x) throws Exception
+    public void guarde(X x) 
     {
-        if(x==null)
-        throw new Exception("Informação ausente");
-
-        if(this.ultimo==this.fila.lenght-1)
-        throw new Exception("nao cabe mais nada");
-        
-          
         this.fila[this.ultimo]= x;
-        
     }
 
-    public void RemoveItem() throws Exception
+    public void RemoveItem() 
     {
-        if(this.primeiro==-1)
-        throw new Exception ("Nada guardado");
+
+        for(int i=0; i==this.fila.length-1; i++)
         
-        for(int i=0; i==this.fila.length-1; i++){
         this.fila[i]=this.fila[i+1];
-        }
+        
         this.ultimo--;
     }
-    public X PegaItem() throws Exception
-    {   if(this.fila[this.primeiro]==-1)
-        throw new Exception("Nada guardado");
-
-
+    
+    public X PegaItem() 
+    {   
        return this.fila[primeiro];
-
     }
+    
     public String toString()
     {
         return (this.ultimo+1)+" elementos"

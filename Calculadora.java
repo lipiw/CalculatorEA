@@ -1,5 +1,4 @@
-﻿
-public class Calculadora 
+﻿public class Calculadora 
 {
     private Fila filaNum;
     private PilhaS pilhaOper;
@@ -92,16 +91,22 @@ public class Calculadora
         expressoes[4]="+";
         expressoes[5]="-";
 
-        if(caracter==")")
-        for(int a=0; a<expressao.length;a++){
-            if(expressao[a]==expressoes[0])
-            pilhaOper.guarde(caracter);
-            throw new Exception("Operacao invalida");
-        }
-
-        for(int i=0; i<expresso.length; i++){
-            if(caracter)
-        }
+//        if(caracter==")")
+//        {
+//            for(int a=0; a<expressao.length;a++)
+//            {
+//                if(expressao[a]==expressoes[0])
+//                {
+//                pilhaOper.guarde(caracter);
+//                throw new Exception("Operacao invalida");
+//                }
+//            }
+//
+//        for(int i=0; i<expresso.length; i++){
+//            if(caracter)
+//        }
+//            
+//            }
     }
 
     public void cauculadoraDeExpressão(){
@@ -148,24 +153,7 @@ public class Calculadora
         return ;//o "?" funciona como uma condicional, com as opções de condição separados por ":"
 
     }
-    public int hashCode(){
-        int ret=7;//não pode ser zero
 
-        ret=ret*17+...;//um numero primo qualquer
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*13+...;
-        ret=ret*13+...;
-        ret=ret*13+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-
-    }
 
 }
 
