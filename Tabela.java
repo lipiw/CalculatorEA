@@ -1,4 +1,4 @@
-package CalculadoraEA;
+
 public class Tabela
 {
     private static String simbolo = "(^*/+-)";
@@ -26,4 +26,5 @@ public class Tabela
 
         return Tabela.tabela[lin][col];
     }
+    
 }

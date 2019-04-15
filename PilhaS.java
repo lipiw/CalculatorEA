@@ -1,130 +1,73 @@
-public class PilhaS <String> {
-    
-	private String[] vetor;
-	private int ultimo=-1;
+import com.sun.java.util.jar.pack.Package.Class.Method;
 
-	public Pilha (int tamanho) throws Exception
-	{
-		if (tamanho<1)
-		    throw new Exception ("Tamanho invalido");
+public class Pilha <X>//cria um parametro para classe, sendo ele de qualquer tipo.
+{
+    private Object[] vetor;
+    private int ultimo;//marca o ultimo item do vetor
 
-		this.vetor = new Object [tamanho];
-	}
-
-    public X meuCloneDeX (X x)
+    public Pilha (int tamanho) throws Exception
     {
-	    X ret=null;
+        if(tamanho<1)
+            throw new Exception ("Tamanho invalido");
+        this.vetor = new Object[tamanho];
 
-		try
-		{
-			Class<?> classe = x.getClass();
-			Class<?>[] tipos = null; 
-			Method metodo = classe.getMethod ("clone", tipos);
-			Object[] parametros = null; 
-			ret=(X)metodo.invoke(x,parametros);
-        }
-		catch (Exception erro)
-		{} 
-
-		return ret;
-	}
-
-
-	public void guarde (X x) throws Exception
-	{
-		if (x==null)
-		    throw new Exception ("Informacao ausente");
-
-		if (this.ultimo == this.vetor.length-1)
-		    throw new Exception ("Nao cabe mais nada");
-
-		this.ultimo++;
-
-        if (x instanceof Cloneable)
-		    this.vetor[this.ultimo] = meuCloneDeX(x);
-		else
-		    this.vetor[this.ultimo] = x;
-	}
-
-	public X getItem () throws Exception
-	{
-		if (this.ultimo==-1)
-		    throw new Exception ("Nada guardado");
-
-        if (this.vetor[this.ultimo] instanceof Cloneable)
-		    return meuCloneDeX ((X)this.vetor[this.ultimo]);
-		else
-		    return (X)this.vetor[this.ultimo];
-	}
-
-
-	public void removaItem () throws Exception
-	{
-		if (this.ultimo==-1)
-		    throw new Exception ("Nada guardado");
-
-		this.vetor[this.ultimo] = null;
-		this.ultimo--;
-	}
-
-   
-	public String toString ()
-	{
-		     
-	}
-
-   
-    public boolean equals (Object obj)
-    {
-		if (this==obj)
-		    return true;
-
-		if (obj==null)
-		    return false;
-
-		if (this.getClass() != obj.getClass())
-		    return false;
-	
-		Pilha<X> pil = (Pilha<X>)obj;
-
-		if (this.ultimo != pil.ultimo)
-			return false;
-
-		for (int i=0; i<this.ultimo; i++)
-			if (!this.vetor[i].equals(pil.vetor[i]))
-				return false;
-
-		return true;
-	}
-
-   
-	public int hashCode ()
-	{
-		int ret=1;
-
-		for (int i=0; i<=this.ultimo; i++)
-    		ret = ret*2 + this.vetor[i].hashCode();
-
-		ret = ret*2 + new Integer (this.ultimo).hashCode();
-
-		return ret;
-	}
-
-  
-    public Pilha (Pilha<X> modelo) throws Exception 
-    {
-        if (modelo==null)
-            throw new Exception ("Modelo ausente");
-
-        this.vetor = new Object [modelo.vetor.length];
-
-        for (int i=0; i<=modelo.ultimo; i++)
-            this.vetor[i] = modelo.vetor[i];
-
-        this.ultimo = modelo.ultimo;
     }
 
+    public void guarde (X x) throws Exception
+    {
+        if(x==null)
+        throw new Exception("Informacao ausente");
+
+        if(this.ultimo==this.vetor.lenght-1)
+        throw new Exception ("nao cabe mais nada");
+
+    this.ultimo++;
+    this.vetor[this.ultimo]= x;
+    }
+
+    public Object getItem() throws  Exception
+    {
+        if(this.ultimo==-1)
+            throw new Exception ("Nada guardado");
+
+        return (X)this.vetor[this.ultimo];
+    }
     
+    public void removaItem() throws  Exception
+    {
+        if(this.ultimo==-1)
+            throw new Exception ("Nada guardado");
+
+        this.vetor[this.ultimo]= null;//pode colocar nulo pois é um vetor
+        this.ultimo--;//removendo a posição acessivel do vetor
+    }
+    public String toString()
+    {
+        return (this.ultimo+1)+" elementos"+ (this.ultimo!=-1?" sendo o ultimo "+ this.vetor[this.ultimo]:"");//o "?" funciona como uma condicional, com as opções de condição separados por ":"
+
+    }
+    //serve para comparar this com obj
+    
+     // DEVO criar objetos iguais para objetos que o .equals() considere iguais 
+     // PROCURO gerar hashCodes diferentes para objetos que o .equals() diz ser diferente
+     public int hashCode(){
+        int ret=7;//não pode ser zero
+
+        ret=ret*17+...;//um numero primo qualquer
+        ret=ret*17+...;
+        ret=ret*17+...;
+        ret=ret*17+...;
+        ret=ret*17+...;
+        ret=ret*17+...;
+        ret=ret*17+...;
+        ret=ret*13+...;
+        ret=ret*13+...;
+        ret=ret*13+...;
+        ret=ret*17+...;
+        ret=ret*17+...;
+        ret=ret*17+...;
+
+    }
     public Object Clone ()
     {
         Pilha<X> ret=null;
@@ -134,9 +77,49 @@ public class PilhaS <String> {
             ret = new Pilha<X> (this);
         }
         catch (Exception erro)
-        {} 
+        {} // sei que nao vai dar erro
 
         return ret;
     }
-   
+
+    public static X meuCloneDeX(X x){
+        //retun x.clone();
+        X ret=null;
+try{
+    Class<> classe= x.getClass();//pego a classe do parametro
+    Class<> tipos = null;//sem paramtro
+    Method motodo = classe.getMethod("clone", tipos);//pegar o metodo da classe do objeto x
+    Object[] parametros =null;//não tem parametro
+    ret =(X)metodo.invoke(x,parametros);
+}
+    
+catch(Exception erro)
+{}
+    return ret;
+    }
+    public boolean equals (Object obj)
+    {      
+        if(this==obj)
+            return true;
+
+        if(obj==null)
+            return false;
+        if(this.getClass()!= obj.getClass())
+            return false;
+        /*
+        if(this.ultimo !=((Pilha<X>obj).ultimo))
+        return false;
+        if(int i=0; i<this.ultimo; i++)
+        return false;
+        */
+        Pilha<X> pil =(Pilha<X>)obj;
+        if(this.ultimo!=pil.ultimo)
+        return false;
+        for(int i=0; i<this.ultimo;i++)
+            if(!this.vetor[i].equals(pil.vetor[i]))
+            return false;
+
+            return true;
+
+     }
 }

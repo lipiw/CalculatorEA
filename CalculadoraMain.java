@@ -10,7 +10,7 @@ public class Programa{
         if(exp == null)
         throw new Exception("Nenhuma expressão declarada");
         
-        this.exp = exp.replaceAll(" ","");
+        
         
     }
     
