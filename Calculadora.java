@@ -141,7 +141,7 @@
     }
     public String toString()
     {
-        return calculadoraDeExpressão();//o "?" funciona como uma condicional, com as opções de condição separados por ":"
+        return calculadoraDeExpressão();//o aaaaaaaaa "?" funciona como uma condicional, com as opções de condição separados por ":"
 
     }
 
