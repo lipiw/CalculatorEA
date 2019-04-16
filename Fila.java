@@ -1,3 +1,6 @@
+s
+import java.lang.reflect.*;
+
 public class Fila <X>
 {
     private Object[] fila;
@@ -6,9 +9,9 @@ public class Fila <X>
 
     public Fila (int tamanho) 
     {
-        this.fila = new Object[tamanho];
-        this.ultimo = this.fila[tamanho];
-        this.primeiro = this.fila[0];
+        this.fila = new Object [tamanho];
+        this.ultimo = tamanho;
+        this.primeiro = (int) this.fila[0];
        
     }
     public void guarde(X x) 
@@ -28,7 +31,7 @@ public class Fila <X>
     
     public X PegaItem() 
     {   
-       return this.fila[primeiro];
+       return (X) this.fila[primeiro];
     }
     
     public String toString()
@@ -58,7 +61,7 @@ public class Fila <X>
         return false;
         if(this.ultimo!=fil.ultimo)
         return false;
-        if (f.fila.length != this.fila.length)
+        if (this.fila.length != this.fila.length)
         return false;
         for(int i=0; i<this.ultimo;i++)
             if(!this.fila[i].equals(fil.fila[i]))

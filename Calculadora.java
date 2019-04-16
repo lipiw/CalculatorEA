@@ -1,9 +1,9 @@
-Ôªøimport jdk.nashorn.internal.ir.ReturnNode;
+
 
 public class Calculadora 
 {
     private Fila filaNum;
-    private PilhaS pilhaOper;
+    private Pilha pilhaOper;
     private String[] expressao;
     private int result;
     
@@ -11,7 +11,7 @@ public class Calculadora
     public Calculadora(String exp) throws Exception
     {   
         filaNum =new Fila();
-        pilhaOper= new PilhaS(20);
+        pilhaOper= new Pilha(20);
         
         exp = exp.replaceAll(" ","");
         
@@ -24,7 +24,7 @@ public class Calculadora
             exp.quebrador.nextToken();
             a++;
         }
-        filaNum.calculadoraDeExpress√£o();
+        filaNum.calculadoraDeExpress„o();
         
         
     }
@@ -45,7 +45,7 @@ public class Calculadora
         if(parenteses!=0)
         {
             return false;
-            throw new Exception("Sua express√£o √© invalida");
+            throw new Exception("Sua express„o È invalida");
         }
 
         else
@@ -92,7 +92,7 @@ public class Calculadora
         }
         }
         else
-        throw new Exception("caracter inserido √© invalido!");
+        throw new Exception("caracter inserido È invalido!");
         }
         
         
@@ -122,14 +122,15 @@ public class Calculadora
         return posicao;
     }
 
-    public int calculadoraDeExpress√£o(){
+    public int calculadoraDeExpressao()
+    {
         int num1;
         int num2;
         String operador;
         
-        PilhaS resultado = new PilhaS(5);
+        Pilha resultado = new Pilha(5);
         
-        while(filaNum.length)
+        while (filaNum.length)
         {
            String pos=filaNum.PegaItem();
            if(!isOperadores(pos)){
@@ -149,8 +150,9 @@ public class Calculadora
         this.result=resultado.getItem();
         return this.result;
 
+        }
     }
-    }
+    
     public int fazerContas(int val1, int val2, String oper){
        
         
@@ -169,7 +171,7 @@ public class Calculadora
     }
     public String toString()
     {
-        return calculadoraDeExpress√£o();//o "?" funciona como uma condicional, com as op√ß√µes de condi√ß√£o separados por ":"
+        return  "O resultado da Express„o È: " + (this.result);
 
     }
 
