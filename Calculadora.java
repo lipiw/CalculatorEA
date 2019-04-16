@@ -3,6 +3,7 @@
     private Fila filaNum;
     private PilhaS pilhaOper;
     private String[] expressao;
+    private int result;
     
  
     public Calculadora(String exp) throws Exception
@@ -70,46 +71,30 @@
             if(isNumeros(caracter[i]))
             filaNum.guarde(caracter[i]);
 
-        else if (isOperadores(caracter[i])){
-            if(isOperadores(caracter[i++]))
-            throw new Exception("Operação invalida");
+        
             
-            caracter[i].verificacao();
-        }
+            caracter[i].verificacao(caracter[i]);
+        
         
         
     }
 
      public void verificacao(String caracter)throws Exception
-     {
-        String[] expressoes;
+     {  boolean posicao;
+        String simbolo = "(^*/+-)"; 
+        String pilha=pilhaOper.getItem();
+        String 
+        int lin=simbolo.indexOf();
+        int col=simbolo.indexOf();
+        for(int e=0; e<lin.length; i++ ){
 
-        expressoes[0]="(";
-        expressoes[1]="^";
-        expressoes[2]="*";
-        expressoes[3]="/";
-        expressoes[4]="+";
-        expressoes[5]="-";
+        posicao = Tabela.isParaDesempilhar();
+        
+      
 
-//        if(caracter==")")
-//        {
-//            for(int a=0; a<expressao.length;a++)
-//            {
-//                if(expressao[a]==expressoes[0])
-//                {
-//                pilhaOper.guarde(caracter);
-//                throw new Exception("Operacao invalida");
-//                }
-//            }
-//
-//        for(int i=0; i<expresso.length; i++){
-//            if(caracter)
-//        }
-//            
-//            }
     }
 
-    public void cauculadoraDeExpressão(){
+    public int calculadoraDeExpressão(){
         int num1;
         int num2;
         String operador;
@@ -117,23 +102,28 @@
         PilhaS resultado = new PilhaS(5);
 
         for(int i=0;i<this.expressao.length;i++){
-           if(!isOperadores(expressao[i]))
+           if(!isOperadores(expressao[i])){
            resultado.guarde(expressao[i]);
-
+           filaNum.RemoveItem();
+           }
            else
            {
            operador=expressao[i];
+           filaNum.RemoveItem();
            num2=(int)resultado.getItem();
            num1=(int)resultado.getItem();
            resultado.guarde(fazerContas(num1, num2, operador));
+           
            }
         }
-
+       
+        this.result=resultado.getItem();
+        return this.result;
 
 
     }
     public int fazerContas(int val1, int val2, String oper){
-        int result;
+       
         
         if(oper=="^")
         result=val1^val2;
@@ -146,11 +136,11 @@
         else if(oper=="-")
         result=val1-val2;
 
-        return result;
+        return this.result;
     }
     public String toString()
     {
-        return ;//o "?" funciona como uma condicional, com as opções de condição separados por ":"
+        return calculadoraDeExpressão();//o "?" funciona como uma condicional, com as opções de condição separados por ":"
 
     }
 
