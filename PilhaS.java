@@ -53,19 +53,19 @@ public class Pilha <X>//cria um parametro para classe, sendo ele de qualquer tip
      public int hashCode(){
         int ret=7;//não pode ser zero
 
-        ret=ret*17+...;//um numero primo qualquer
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*13+...;
-        ret=ret*13+...;
-        ret=ret*13+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
-        ret=ret*17+...;
+        ret=ret*17+2;//um numero primo qualquer
+        ret=ret*17+1;
+        ret=ret*17+3;
+        ret=ret*17+5;
+        ret=ret*17+7;
+        ret=ret*17+11;
+        ret=ret*17+1;
+        ret=ret*13+5;
+        ret=ret*13+23;
+        ret=ret*13+1;
+        ret=ret*17+2;
+        ret=ret*17+7;
+        ret=ret*17+7;
 
     }
     public Object Clone ()
@@ -82,7 +82,7 @@ public class Pilha <X>//cria um parametro para classe, sendo ele de qualquer tip
         return ret;
     }
 
-    public static X meuCloneDeX(X x){
+    public X meuCloneDeX(X x){
         //retun x.clone();
         X ret=null;
 try{
@@ -91,7 +91,8 @@ try{
     Method motodo = classe.getMethod("clone", tipos);//pegar o metodo da classe do objeto x
     Object[] parametros =null;//não tem parametro
     ret =(X)metodo.invoke(x,parametros);
-}
+
+    }
     
 catch(Exception erro)
 {}

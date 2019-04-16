@@ -1,4 +1,6 @@
-﻿public class Calculadora 
+﻿import jdk.nashorn.internal.ir.ReturnNode;
+
+public class Calculadora 
 {
     private Fila filaNum;
     private PilhaS pilhaOper;
@@ -18,9 +20,12 @@
         while(exp.quebrador.hasMoreTokens())
         {
             expressao[a]=exp;
+            conversor(expressao[a]);
             exp.quebrador.nextToken();
             a++;
         }
+        filaNum.calculadoraDeExpressão();
+        
         
     }
 
@@ -63,35 +68,58 @@
     
     
     public void conversor(String expInf)throws Exception
-    {
+    {   boolean verificado;
         String item;
-        String[] caracter = expInf.split(" ");
 
-        for(int i; i<expInf.length();i++)
-            if(isNumeros(caracter[i]))
-            filaNum.guarde(caracter[i]);
-
-        
+        for(int i=0; i<expressao.length;i++){
             
-            caracter[i].verificacao(caracter[i]);
+            if(isNumeros(caracter[i])){
+            filaNum.guarde(caracter[i]);
+            filaNum.RemoveItem();}
+
         
+            else{
+                if(isOperadores(carcater[i])){
+            verificado = verificacao(caracter[i]);
+            if(!verificado){
+                pilhaOper.guarde(expressao[i]);
+                
+            }
+            else{
+            filaNum.getItem(pilhaOper.getItem());
+            pilhaOper.RemoveItem();
+            pilhaOper.guarde(expressao[i]);
+        }
+        }
+        else
+        throw new Exception("caracter inserido é invalido!");
+        }
         
         
     }
+    }
 
-     public void verificacao(String caracter)throws Exception
+     public boolean verificacao(String caracter)throws Exception
      {  boolean posicao;
         String simbolo = "(^*/+-)"; 
         String pilha=pilhaOper.getItem();
-        String 
-        int lin=simbolo.indexOf();
-        int col=simbolo.indexOf();
-        for(int e=0; e<lin.length; i++ ){
+        char lin, col;
+        String daFila=caracter;
+     
+        for(int a=0; a<=7;a++){
+            int qual1= simbolo.indexOf(a);
+            if(pilha==qual1)
+            lin=pilha;
 
-        posicao = Tabela.isParaDesempilhar();
-        
-      
-
+        }
+        for(int a=0; a<=7;a++){
+            int qual2= simbolo.indexOf(a);
+            if(daFila==qual2)
+            col=daFila;
+        }
+        posicao = Tabela.isParaDesempilhar(lin,col);
+     
+        return posicao;
     }
 
     public int calculadoraDeExpressão(){
@@ -141,7 +169,7 @@
     }
     public String toString()
     {
-        return calculadoraDeExpressão();//o aaaaaaaaa "?" funciona como uma condicional, com as opções de condição separados por ":"
+        return calculadoraDeExpressão();//o "?" funciona como uma condicional, com as opções de condição separados por ":"
 
     }
 
