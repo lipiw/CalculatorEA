@@ -98,29 +98,30 @@
         int num1;
         int num2;
         String operador;
-
+        
         PilhaS resultado = new PilhaS(5);
-
-        for(int i=0;i<this.expressao.length;i++){
-           if(!isOperadores(expressao[i])){
-           resultado.guarde(expressao[i]);
+        
+        while(filaNum.length)
+        {
+           String pos=filaNum.PegaItem();
+           if(!isOperadores(pos)){
+           resultado.guarde(pos);
            filaNum.RemoveItem();
            }
            else
            {
-           operador=expressao[i];
+           operador=pos;
            filaNum.RemoveItem();
            num2=(int)resultado.getItem();
            num1=(int)resultado.getItem();
            resultado.guarde(fazerContas(num1, num2, operador));
-           
-           }
         }
+        
        
         this.result=resultado.getItem();
         return this.result;
 
-
+    }
     }
     public int fazerContas(int val1, int val2, String oper){
        
