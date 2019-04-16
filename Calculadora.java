@@ -1,4 +1,4 @@
-
+ï»¿
 
 public class Calculadora 
 {
@@ -10,8 +10,8 @@ public class Calculadora
  
     public Calculadora(String exp) throws Exception
     {   
-        filaNum =new Fila();
-        pilhaOper= new Pilha(20);
+        filaNum<String> =new Fila(100);
+        pilhaOper<String>= new Pilha(100);
         
         exp = exp.replaceAll(" ","");
         
@@ -24,7 +24,7 @@ public class Calculadora
             exp.quebrador.nextToken();
             a++;
         }
-        filaNum.calculadoraDeExpressão();
+        filaNum.calculadoraDeExpressao();
         
         
     }
@@ -45,7 +45,7 @@ public class Calculadora
         if(parenteses!=0)
         {
             return false;
-            throw new Exception("Sua expressão é invalida");
+            throw new Exception("Sua expressï¿½o ï¿½ invalida");
         }
 
         else
@@ -69,34 +69,27 @@ public class Calculadora
     
     public void conversor(String expInf)throws Exception
     {   boolean verificado;
-        String item;
-
-        for(int i=0; i<expressao.length;i++){
-            
-            if(isNumeros(caracter[i])){
-            filaNum.guarde(caracter[i]);
-            filaNum.RemoveItem();}
-
-        
+   
+            if(isNumeros(expInf))
+            filaNum.guarde(expInf);
             else{
-                if(isOperadores(carcater[i])){
-            verificado = verificacao(caracter[i]);
+                if(isOperadores(expInf)){
+            verificado = verificacao(expInf);
             if(!verificado){
-                pilhaOper.guarde(expressao[i]);
-                
+                pilhaOper.guarde(expInf);
             }
             else{
             filaNum.getItem(pilhaOper.getItem());
             pilhaOper.RemoveItem();
-            pilhaOper.guarde(expressao[i]);
+            pilhaOper.guarde(expInf);
         }
         }
         else
-        throw new Exception("caracter inserido é invalido!");
+        throw new Exception("caracter inserido invalido!");
         }
         
         
-    }
+    
     }
 
      public boolean verificacao(String caracter)throws Exception
@@ -104,18 +97,18 @@ public class Calculadora
         String simbolo = "(^*/+-)"; 
         String pilha=pilhaOper.getItem();
         char lin, col;
-        String daFila=caracter;
+   
      
         for(int a=0; a<=7;a++){
             int qual1= simbolo.indexOf(a);
             if(pilha==qual1)
-            lin=pilha;
+            lin=(char)pilha;
 
         }
         for(int a=0; a<=7;a++){
             int qual2= simbolo.indexOf(a);
-            if(daFila==qual2)
-            col=daFila;
+            if(caracter==qual2)
+            col=(char)caracter;
         }
         posicao = Tabela.isParaDesempilhar(lin,col);
      
@@ -171,7 +164,7 @@ public class Calculadora
     }
     public String toString()
     {
-        return  "O resultado da Expressão é: " + (this.result);
+        return  "O resultado da Expressï¿½o ï¿½: " + (this.result);
 
     }
 
