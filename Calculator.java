@@ -113,14 +113,14 @@ public class Calculator
      { 
         boolean posicao;
         String simbolo = "(^*/+-)"; 
-        String pilha=this.pilhaOper.getItem();
+        String pilha=this.pilhaOper.getItem();  //ultimo da pilha
 
         char lin, col;
-        string qual1, qual2;
+        String qual1, qual2;
         for(int a=0; a<=6;a++)
         {
             qual1= simbolo.indexOf(a);
-            
+
             if(pilha==qual1)
             lin=pilha.charAt(0);
         }
