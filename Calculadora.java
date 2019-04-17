@@ -6,12 +6,17 @@ public class Calculadora
     private Pilha pilhaOper;
     private String[] expressao;
     private int result;
+
     
  
     public Calculadora(String exp) throws Exception
     {   
-        filaNum<String> =new Fila(100);
-        pilhaOper<String>= new Pilha(100);
+       Pilha<String> p1 = new Pilha<String>(30);
+       Pilha<Double> resultado = new Pilha<Double>(5);
+       Fila<String> f1 = new Fila<String>(15);
+       
+       filaNum =new Fila(100);
+        pilhaOper = new Pilha(100);
         
         exp = exp.replaceAll(" ","");
         
@@ -24,6 +29,7 @@ public class Calculadora
             exp.quebrador.nextToken();
             a++;
         }
+
         filaNum.calculadoraDeExpressao();
         
         
@@ -61,9 +67,17 @@ public class Calculadora
     
     public boolean isNumero (String nmr)
     {
-        if(nmr.matches("[0-9]"))
+        try
+        {
+            Double.parseDouble(nmr);
             return true;
-        return false;
+        }
+        catch (NumberFormatException erro)
+        {
+            return false;
+        }
+
+     
     }
     
     
@@ -87,28 +101,36 @@ public class Calculadora
         else
         throw new Exception("caracter inserido invalido!");
         }
-        
-        
-    
     }
 
      public boolean verificacao(String caracter)throws Exception
      {  boolean posicao;
         String simbolo = "(^*/+-)"; 
         String pilha=pilhaOper.getItem();
+
         char lin, col;
    
      
-        for(int a=0; a<=7;a++){
+        for(int a=0; a<=6;a++){
             int qual1= simbolo.indexOf(a);
             if(pilha==qual1)
-            lin=(char)pilha;
+            lin=pilha.charAt(0);
 
         }
-        for(int a=0; a<=7;a++){
+        for(int a=0; a<=6;a++){
             int qual2= simbolo.indexOf(a);
+            if(caracter!=simbolo.indexOf(6)){
             if(caracter==qual2)
+                col=(char)caracter;
+            }
+            else{
+            if(pilha==simbolo.indexOf(0))
+            pilhaOper.removaItem();
+
             col=(char)caracter;
+
+            }
+            
         }
         posicao = Tabela.isParaDesempilhar(lin,col);
      
@@ -121,7 +143,7 @@ public class Calculadora
         int num2;
         String operador;
         
-        Pilha resultado = new Pilha(5);
+        
         
         while (filaNum.length)
         {
@@ -134,8 +156,8 @@ public class Calculadora
            {
            operador=pos;
            filaNum.RemoveItem();
-           num2=(int)resultado.getItem();
-           num1=(int)resultado.getItem();
+           num2=(double)this.resultado.getItem();
+           num1=(double)this.resultado.getItem();
            resultado.guarde(fazerContas(num1, num2, operador));
         }
         
