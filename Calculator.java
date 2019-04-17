@@ -1,6 +1,4 @@
-﻿
-
-public class Calculadora 
+public class Calculator
 {
     private Fila filaNum;
     private Pilha pilhaOper;
@@ -9,11 +7,13 @@ public class Calculadora
 
     
  
-    public Calculadora(String exp) throws Exception
+    public Calculator(String exp) throws Exception
     {   
-       Pilha<String> p1 = new Pilha<String>(30);
-       Pilha<Double> resultado = new Pilha<Double>(5);
-       Fila<String> f1 = new Fila<String>(15);
+        
+
+       Pilha<String> p1 = new Pilha<String>();
+       Pilha<Double> resultado = new Pilha<Double>();
+       
        
         filaNum = new Fila(100);
         pilhaOper = new Pilha(100);
@@ -80,14 +80,15 @@ public class Calculadora
     
     
     public void conversor(String expInf)throws Exception
-    {   boolean verificado;
+    {   
+        boolean verificado;
    
-            if(isNumeros(expInf))
+            if(isNumeros(expInf))   //se é numero guarde na fila de numeros
             filaNum.guarde(expInf);
      
             else
             {
-            if(isOperadores(expInf)){
+            if(isOperadores(expInf)){           //se
             verificado = verificacao(expInf);
                 
             if(!verificado)
@@ -104,7 +105,7 @@ public class Calculadora
         }
                 
         else
-        throw new Exception("caracter inserido invalido!");
+        throw new Exception("Caracter inserido invalido!");
         }
     }
 
@@ -112,7 +113,7 @@ public class Calculadora
      { 
         boolean posicao;
         String simbolo = "(^*/+-)"; 
-        String pilha=pilhaOper.getItem();
+        String pilha=this.pilhaOper.getItem();
 
         char lin, col;
    
@@ -154,6 +155,7 @@ public class Calculadora
         int num1;
         int num2;
         String operador;
+        String resultado;
         
         while (filaNum.length)
         {
@@ -170,14 +172,14 @@ public class Calculadora
            {
            operador=pos;
            filaNum.RemoveItem();
-           num2=(double)this.resultado.getItem();
-           num1=(double)this.resultado.getItem();
+           num2=(double)resultado.getItem();
+           num1=(double)resultado.getItem();
            resultado.guarde(fazerContas(num1, num2, operador));
-        }
+            }
         
        
-        this.result=resultado.getItem();
-        return this.result;
+            this.result=resultado.getItem();
+            return this.result;
 
         }
     }
