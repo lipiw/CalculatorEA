@@ -15,7 +15,7 @@ public class Calculadora
        Pilha<Double> resultado = new Pilha<Double>(5);
        Fila<String> f1 = new Fila<String>(15);
        
-       filaNum =new Fila(100);
+        filaNum = new Fila(100);
         pilhaOper = new Pilha(100);
         
         exp = exp.replaceAll(" ","");
@@ -51,7 +51,7 @@ public class Calculadora
         if(parenteses!=0)
         {
             return false;
-            throw new Exception("Sua express�o � invalida");
+            throw new Exception("Sua expressao e invalida");
         }
 
         else
@@ -75,9 +75,7 @@ public class Calculadora
         catch (NumberFormatException erro)
         {
             return false;
-        }
-
-     
+        }    
     }
     
     
@@ -86,49 +84,63 @@ public class Calculadora
    
             if(isNumeros(expInf))
             filaNum.guarde(expInf);
-            else{
-                if(isOperadores(expInf)){
+     
+            else
+            {
+            if(isOperadores(expInf)){
             verificado = verificacao(expInf);
-            if(!verificado){
+                
+            if(!verificado)
+            {
                 pilhaOper.guarde(expInf);
             }
-            else{
+                    
+            else
+            {
             filaNum.getItem(pilhaOper.getItem());
             pilhaOper.RemoveItem();
             pilhaOper.guarde(expInf);
+            }
         }
-        }
+                
         else
         throw new Exception("caracter inserido invalido!");
         }
     }
 
      public boolean verificacao(String caracter)throws Exception
-     {  boolean posicao;
+     { 
+        boolean posicao;
         String simbolo = "(^*/+-)"; 
         String pilha=pilhaOper.getItem();
 
         char lin, col;
    
-     
-        for(int a=0; a<=6;a++){
+        for(int a=0; a<=6;a++)
+        {
             int qual1= simbolo.indexOf(a);
+            
             if(pilha==qual1)
             lin=pilha.charAt(0);
-
         }
-        for(int a=0; a<=6;a++){
+      
+        for(int a=0; a<=6;a++)
+        {
             int qual2= simbolo.indexOf(a);
-            if(caracter!=simbolo.indexOf(6)){
+            
+            if(caracter!=simbolo.indexOf(6))
+            {
+                
             if(caracter==qual2)
                 col=(char)caracter;
             }
-            else{
+            
+            else
+            {
             if(pilha==simbolo.indexOf(0))
             pilhaOper.removaItem();
 
             col=(char)caracter;
-
             }
             
         }
@@ -143,15 +155,17 @@ public class Calculadora
         int num2;
         String operador;
         
-        
-        
         while (filaNum.length)
         {
            String pos=filaNum.PegaItem();
-           if(!isOperadores(pos)){
+            
+           if(!isOperadores(pos))
+               
+           {
            resultado.guarde(pos);
            filaNum.RemoveItem();
            }
+            
            else
            {
            operador=pos;
@@ -173,12 +187,16 @@ public class Calculadora
         
         if(oper=="^")
         result=val1^val2;
+        
         else if(oper=="*")
         result=val1*val2;
+        
         else if(oper=="/")
         result=val1/val2;
+        
         else if(oper=="+")
         result=val1+val2;
+        
         else if(oper=="-")
         result=val1-val2;
 
@@ -186,7 +204,7 @@ public class Calculadora
     }
     public String toString()
     {
-        return  "O resultado da Express�o �: " + (this.result);
+        return  "O resultado da Expressao e: " + (this.result);
 
     }
 
