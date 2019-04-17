@@ -116,10 +116,10 @@ public class Calculator
         String pilha=this.pilhaOper.getItem();
 
         char lin, col;
-   
+        string qual1, qual2;
         for(int a=0; a<=6;a++)
         {
-            int qual1= simbolo.indexOf(a);
+            qual1= simbolo.indexOf(a);
             
             if(pilha==qual1)
             lin=pilha.charAt(0);
@@ -127,13 +127,13 @@ public class Calculator
       
         for(int a=0; a<=6;a++)
         {
-            int qual2= simbolo.indexOf(a);
+            qual2= simbolo.indexOf(a);
             
             if(caracter!=simbolo.indexOf(6))
             {
                 
             if(caracter==qual2)
-                col=(char)caracter;
+                col=caracter.charAt(0);
             }
             
             else
@@ -141,7 +141,7 @@ public class Calculator
             if(pilha==simbolo.indexOf(0))
             pilhaOper.removaItem();
 
-            col=(char)caracter;
+            col=caracter.charAt(0);
             }
             
         }
