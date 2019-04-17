@@ -1,36 +1,33 @@
+import java.util.StringTokenizer;
+
 public class Calculator
 {
-    private Fila filaNum;
-    private Pilha pilhaOper;
+    private Fila<String> filaNum;
+    private Pilha<String> pilhaOper;
     private String[] expressao;
-    private int result;
+    private Double result;
 
     
  
     public Calculator(String exp) throws Exception
     {   
-        
-
-       Pilha<String> p1 = new Pilha<String>();
-       Pilha<Double> resultado = new Pilha<Double>();
-       
-       
-        filaNum = new Fila(100);
-        pilhaOper = new Pilha(100);
+        filaNum = new Fila<>(100);
+        pilhaOper = new Pilha<>(100);
         
         exp = exp.replaceAll(" ","");
         
         int a=0;
         StringTokenizer quebrador = new StringTokenizer (exp, "+-*/^()", true);
-        while(exp.quebrador.hasMoreTokens())
+        String pedacoAtual = "";
+        while(quebrador.hasMoreTokens())
         {
-            expressao[a]=exp;
+            pedacoAtual = quebrador.nextToken();
+            expressao[a]=pedacoAtual;
             conversor(expressao[a]);
-            exp.quebrador.nextToken();
             a++;
         }
 
-        filaNum.calculadoraDeExpressao();
+        calculadoraDeExpressao();
         
         
     }
@@ -41,20 +38,16 @@ public class Calculator
             
             for(int i=0; i<expressao.length(); i++)
             {
-                if(expressao.charAt(i) == "(")
+                if(expressao.charAt(i) == '(')
                 parenteses++;
                 
-                if(expressao.charAt(i) == ")")
+                if(expressao.charAt(i) == ')')
                 parenteses--;
             }
         
         if(parenteses!=0)
-        {
-            return false;
             throw new Exception("Sua expressao e invalida");
-        }
-
-        else
+        
         return true;
     }
 
@@ -65,7 +58,7 @@ public class Calculator
         return false;
     }
     
-    public boolean isNumero (String nmr)
+    public boolean isNumeros(String nmr)
     {
         try
         {
@@ -88,47 +81,42 @@ public class Calculator
      
             else
             {
-            if(isOperadores(expInf)){           //se
-            verificado = verificacao(expInf);
-                
-            if(!verificado)
-            {
+                if(isOperadores(expInf)){           //se
+                verificado = verificacao(expInf);
+
+                while (verificado)
+                {
+                    filaNum.guarde(pilhaOper.getItem());
+                    pilhaOper.removaItem();
+
+                    verificado = verificacao(expInf);
+                }
+
                 pilhaOper.guarde(expInf);
             }
-                    
             else
-            {
-            filaNum.getItem(pilhaOper.getItem());
-            pilhaOper.RemoveItem();
-            pilhaOper.guarde(expInf);
-            }
-        }
-                
-        else
-        throw new Exception("Caracter inserido invalido!");
+                throw new Exception("Caracter inserido invalido!");
         }
     }
 
      public boolean verificacao(String caracter)throws Exception
      { 
-        boolean posicao;
-        String simbolo = "(^*/+-)"; 
+        //String simbolo = "(^*/+-)"; 
         String pilha=this.pilhaOper.getItem();  //ultimo da pilha
 
-        char lin, col;
+        char doTopo = pilha.charAt(0);
+        char doStrTok = caracter.charAt(0);
+
+        /*char lin, col;
         String qual1, qual2;
         for(int a=0; a<=6;a++)
         {
             qual1= simbolo.indexOf(a);
-
-            if(pilha==qual1)
-            lin=pilha.charAt(0);
-        }
-      
-        for(int a=0; a<=6;a++)
-        {
             qual2= simbolo.indexOf(a);
+            if(pilha==qual1){
+            lin=pilha.charAt(0);
             
+            }
             if(caracter!=simbolo.indexOf(6))
             {
                 
@@ -144,27 +132,25 @@ public class Calculator
             col=caracter.charAt(0);
             }
             
-        }
-        posicao = Tabela.isParaDesempilhar(lin,col);
+        */
      
-        return posicao;
+        return Tabela.isParaDesempilhar(doTopo,doStrTok);
     }
 
-    public int calculadoraDeExpressao()
+    public Double calculadoraDeExpressao()
     {
-        int num1;
-        int num2;
+        Double num1;
+        Double num2;
         String operador;
-        String resultado;
         
-        while (filaNum.length)
+        Pilha<Double> resultado=  new Pilha<>(5);
+        for(int i=0;i>=filaNum.getTamanho();i++)
         {
            String pos=filaNum.PegaItem();
             
            if(!isOperadores(pos))
-               
            {
-           resultado.guarde(pos);
+           resultado.guarde(Double.parseDouble(pos));
            filaNum.RemoveItem();
            }
             
@@ -172,23 +158,20 @@ public class Calculator
            {
            operador=pos;
            filaNum.RemoveItem();
-           num2=(double)resultado.getItem();
-           num1=(double)resultado.getItem();
+           num2=resultado.getItem();
+           num1=resultado.getItem();
            resultado.guarde(fazerContas(num1, num2, operador));
             }
-        
-       
-            this.result=resultado.getItem();
-            return this.result;
-
+            
         }
+        return resultado.getItem();
     }
     
-    public int fazerContas(int val1, int val2, String oper){
+    public double fazerContas(Double val1, Double val2, String oper){
        
         
         if(oper=="^")
-        result=val1^val2;
+        result=Math.pow(val1,val2);
         
         else if(oper=="*")
         result=val1*val2;

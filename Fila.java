@@ -13,6 +13,12 @@ public class Fila <X>
         this.primeiro = (int) this.fila[0];
        
     }
+
+    public int getTamanho()
+    {
+        return ultimo + 1;
+    }
+
     public void guarde(X x) 
     {
         this.fila[this.ultimo]= x;

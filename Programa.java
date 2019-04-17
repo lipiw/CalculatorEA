@@ -6,12 +6,12 @@ public class Programa{
 
     static void Main(String [] args) throws Exception
     {   
-  
-        BufferedReader myBuffer = new BufferedReader(new InputStreamReader(
-        new FileInputStream("C:\\Desktop\\CalculatorEA\\Calculadora.txt"), "UTF-8"));
+        System.out.println("Digite uma expressao: ");
+        
+        BufferedReader myBuffer = new BufferedReader(new InputStreamReader(System.in));
 
-        String expressao;
-        Calculator c = new Calculator();
+        String expressao = myBuffer.readLine();
+        Calculator c = new Calculator(expressao);
        
         
         System.out.println ("Digite a expressao:");
