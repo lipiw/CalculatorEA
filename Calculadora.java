@@ -1,6 +1,7 @@
+package Calculadora;
 import java.util.StringTokenizer;
 
-public class Calculator
+public class Calculadora
 {
     private Fila<String> filaNum;
     private Pilha<String> pilhaOper;
@@ -9,7 +10,7 @@ public class Calculator
 
     
  
-    public Calculator(String exp) throws Exception
+    public Calculadora(String exp) throws Exception
     {   
         filaNum = new Fila<>(100);
         pilhaOper = new Pilha<>(100);

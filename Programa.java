@@ -1,3 +1,4 @@
+package Calculadora;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -11,7 +12,7 @@ public class Programa{
         BufferedReader myBuffer = new BufferedReader(new InputStreamReader(System.in));
 
         String expressao = myBuffer.readLine();
-        Calculator c = new Calculator(expressao);
+        Calculadora c = new Calculadora(expressao);
        
         
         System.out.println ("Digite a expressao:");
