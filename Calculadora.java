@@ -1,4 +1,4 @@
-package Calculadora;
+
 import java.util.StringTokenizer;
 
 public class Calculadora
@@ -77,7 +77,7 @@ public class Calculadora
     {   
         boolean verificado;
    
-            if(isNumeros(expInf))   //se é numero guarde na fila de numeros
+            if(isNumeros(expInf))   //se � numero guarde na fila de numeros
             filaNum.guarde(expInf);
      
             else
@@ -196,6 +196,3 @@ public class Calculadora
 
 
 }
-
-
-
