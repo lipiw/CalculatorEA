@@ -1,4 +1,4 @@
-
+﻿
 import java.lang.reflect.*;
 
 public class Fila <X>
@@ -11,8 +11,7 @@ public class Fila <X>
     {
         this.fila = new Object [tamanho];
         this.ultimo = tamanho;
-        this.primeiro = (int) this.fila[0];
-       
+        
     }
 
     public int getTamanho()

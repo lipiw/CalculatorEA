@@ -1,4 +1,4 @@
-
+﻿
 import java.util.StringTokenizer;
 
 public class Calculadora
@@ -12,8 +12,9 @@ public class Calculadora
  
     public Calculadora(String exp) throws Exception
     {   
-        filaNum = new Fila<>(100);
-        pilhaOper = new Pilha<>(100);
+        filaNum = new Fila<String>(100);
+        pilhaOper = new Pilha<String>(100);
+        expressao = new String[50];
         
         exp = exp.replaceAll(" ","");
         
@@ -22,8 +23,8 @@ public class Calculadora
         String pedacoAtual = "";
         while(quebrador.hasMoreTokens())
         {
-            pedacoAtual = quebrador.nextToken();
-            expressao[a]=pedacoAtual;
+            //pedacoAtual = quebrador.nextToken();
+            expressao[a]=quebrador.nextToken();
             conversor(expressao[a]);
             a++;
         }
