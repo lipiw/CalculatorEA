@@ -3,20 +3,18 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-public class Programa{
+class Programa{
 
-    static void Main(String [] args) throws Exception
+    public static void main(String [] args) throws Exception
     {   
         System.out.println("Digite uma expressao: ");
         
         BufferedReader myBuffer = new BufferedReader(new InputStreamReader(System.in));
 
         String expressao = myBuffer.readLine();
-        Calculadora c = new Calculadora(expressao);
-       
+        Calculadora_1 c = new Calculadora_1(expressao);
         
-        System.out.println ("Digite a expressao:");
-        
+        System.out.println("O resultado da expressao e = " + c.getResult());
         if(expressao == null)
         throw new Exception("Nenhuma expressao declarada");
 

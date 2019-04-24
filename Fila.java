@@ -1,78 +1,50 @@
-﻿
-import java.lang.reflect.*;
 
 public class Fila <X>
 {
-    private Object[] fila;
-    private int ultimo;
-    private int primeiro= -1;
+	private Object[] vetor;
+	private int inicio=0, fim=0, qtd=0;
 
-    public Fila (int tamanho) 
-    {
-        this.fila = new Object [tamanho];
-        this.ultimo = tamanho;
-        
-    }
+	public Fila (int tamanho) throws Exception
+	{
+		if (tamanho<1)
+		    throw new Exception ("Tamanho invalido");
 
-    public int getTamanho()
-    {
-        return ultimo + 1;
-    }
+		this.vetor = new Object [tamanho];
+	}
 
-    public void guarde(X x) 
-    {
-        this.fila[this.ultimo]= x;
-    }
+	public void guarde (X x) throws Exception
+	{
+		if (x==null)
+		    throw new Exception ("Informacao ausente");
 
-    public void RemoveItem() 
-    {
+		if (this.qtd == this.vetor.length)
+		    throw new Exception ("Nao cabe mais nada");
 
-        for(int i=0; i==this.fila.length-1; i++)
-        
-        this.fila[i]=this.fila[i+1];
-        
-        this.ultimo--;
-    }
-    
-    public X PegaItem() 
-    {   
-       return (X) this.fila[primeiro];
-    }
-    
-    public String toString()
-    {
-        return (this.ultimo+1)+" elementos"
-        + (this.ultimo!=-1?" sendo o ultimo "
-        + this.fila[this.ultimo]:"")+"e o primeiro é"+(this.fila[primeiro]);//o "?" funciona como uma condicional, com as opções de condição separados por ":"
+		this.vetor[this.fim] = x;
+		this.fim = this.fim<this.vetor.length?this.fim+1:0;
+		this.qtd++;
+	}
 
-    }
-    public boolean equals (Object obj)
-    {      
-        if(this==obj)
-            return true;
+	public X getItem () throws Exception
+	{
+		if (this.qtd==0)
+		    throw new Exception ("Nada guardado");
 
-        if(obj==null)
-            return false;
-        if(this.getClass()!= obj.getClass())
-            return false;
-        /*
-        if(this.ultimo !=((Pilha<X>obj).ultimo))
-        return false;
-        if(int i=0; i<this.ultimo; i++)
-        return false;
-        */
-        Fila<X> fil =(Fila<X>)obj;
-        if(this.primeiro!=fil.primeiro)
-        return false;
-        if(this.ultimo!=fil.ultimo)
-        return false;
-        if (this.fila.length != this.fila.length)
-        return false;
-        for(int i=0; i<this.ultimo;i++)
-            if(!this.fila[i].equals(fil.fila[i]))
-            return false;
+		return (X)this.vetor[this.inicio];
+	}
 
-            return true;
+	public void removaItem () throws Exception
+	{
+		if (this.qtd==0)
+		    throw new Exception ("Nada guardado");
 
-     }
-    }
+		this.vetor[this.inicio] = null;
+		this.inicio = this.inicio<this.vetor.length?this.inicio+1:0;
+		this.qtd--;
+	}
+public int Tamanho()
+{
+    return qtd;
+}
+    // repensar toString, equals e hashCode
+}

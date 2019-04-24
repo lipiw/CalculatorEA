@@ -31,12 +31,12 @@ public class Pilha <X>
 
 	public void guarde (X x) 
 	{
-		this.ultimo++;
+            this.ultimo++;
 
-        if (x instanceof Cloneable)
-		    this.vetor[this.ultimo] = meuCloneDeX(x);
-		else
-		    this.vetor[this.ultimo] = x;
+            if (x instanceof Cloneable)
+		this.vetor[this.ultimo] = meuCloneDeX(x);
+            else
+		this.vetor[this.ultimo] = x;
 	}
 
 	public X getItem () 
@@ -126,5 +126,8 @@ public class Pilha <X>
 
         return ret;
     }
-    
+    public int Tamanho()
+    {
+        return ultimo+1;
+    }
 }
