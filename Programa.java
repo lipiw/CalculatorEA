@@ -11,7 +11,7 @@ class Programa{
         BufferedReader myBuffer = new BufferedReader(new InputStreamReader(System.in));
 
         String expressao = myBuffer.readLine();
-        Calculadora_1 c = new Calculadora_1(expressao);
+        Calculadora c = new Calculadora(expressao);
         
         System.out.println("O resultado da expressao e = " + c.getResult());
         if(expressao == null)
