@@ -1,7 +1,7 @@
 
 import java.util.StringTokenizer;
 
-public class Calculadora_1
+public class Calculadora
 {
     private Fila<String> filaNum;
     private Pilha<String> pilhaOper;
@@ -9,7 +9,7 @@ public class Calculadora_1
     private double result;
     StringTokenizer quebrador = null;
  
-    public Calculadora_1(String exp) throws Exception
+    public Calculadora(String exp) throws Exception
     {   
         filaNum = new Fila<String>(exp.length());
         pilhaOper = new Pilha<String>(exp.length());

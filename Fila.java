@@ -46,5 +46,5 @@ public int Tamanho()
 {
     return qtd;
 }
-    // repensar toString, equals e hashCode
+
 }

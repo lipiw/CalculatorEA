@@ -1,4 +1,3 @@
-
 public class Tabela
 {
     private static String simbolo = "(^*/+-)";
