@@ -1,7 +1,7 @@
-
+package calculadora_p;
 import java.util.StringTokenizer;
 
-public class Calculadora
+public class Calculadora_1
 {
     private Fila<String> filaNum;
     private Pilha<String> pilhaOper;
@@ -9,14 +9,14 @@ public class Calculadora
     private double result;
     StringTokenizer quebrador = null;
  
-    public Calculadora(String exp) throws Exception
+    public Calculadora_1(String exp) throws Exception
     {   
         filaNum = new Fila<String>(exp.length());
         pilhaOper = new Pilha<String>(exp.length());
         //expressao = new String[50];
         
         this.expressao = exp.replaceAll(" ","");
-        
+        valida(exp);
         quebrador = new StringTokenizer (this.expressao, "+-*/^()", true);
         String pedacoAtual = "";
         while(quebrador.hasMoreTokens())
@@ -43,9 +43,11 @@ public class Calculadora
                 if(expressao.charAt(i) == ')')
                 parenteses--;
             }
-        
-        if(parenteses!=0)
+            if(parenteses!=0)
             throw new Exception("Sua expressao e invalida");
+            
+          else if((expressao.charAt(0) == '(')||(expressao.charAt(expressao.length()) == ')'))
+                 throw new Exception("Sua expressao e invalida");
         
         return true;
     }
@@ -152,7 +154,8 @@ public class Calculadora
         Pilha<Double> resultado = new Pilha<>(this.expressao.length());
         while(filaNum.Tamanho() > 0)
         {
-           String pos=filaNum.getItem();
+           String pos;
+            pos = filaNum.getItem();
             
            if(isNumeros(pos))
            {
