@@ -1,7 +1,7 @@
-package calculadora_p;
+package calculadora;
 import java.util.StringTokenizer;
 
-public class Calculadora_1
+public class Calculadora
 {
     private Fila<String> filaNum;
     private Pilha<String> pilhaOper;
@@ -9,7 +9,7 @@ public class Calculadora_1
     private double result;
     StringTokenizer quebrador = null;
  
-    public Calculadora_1(String exp) throws Exception
+    public Calculadora(String exp) throws Exception
     {   
         filaNum = new Fila<String>(exp.length());
         pilhaOper = new Pilha<String>(exp.length());
@@ -34,6 +34,7 @@ public class Calculadora_1
     public static boolean valida(String expressao)throws Exception
     {
         int parenteses = 0;
+              
             
             for(int i=0; i<expressao.length(); i++)
             {
@@ -43,11 +44,24 @@ public class Calculadora_1
                 if(expressao.charAt(i) == ')')
                 parenteses--;
             }
-            if(parenteses!=0)
-            throw new Exception("Sua expressao e invalida");
             
-          else if((expressao.charAt(0) == '(')||(expressao.charAt(expressao.length()) == ')'))
-                 throw new Exception("Sua expressao e invalida");
+            if(parenteses!=0)
+            throw new Exception("Expressão incorreta");
+            
+            
+              for(int i=0; i<expressao.length(); i++)
+              {
+               if((expressao[i] == isOperadores()) && (expressao[i+1] == isOperadores()))
+                   throw new Exception("Expressão incorreta");
+              }
+            
+            
+            //fazer uma condição para que o primeiro nem o ultimo não seja isOperador()
+            
+            
+            
+            //else if((expressao.charAt(0) == '(')||(expressao.charAt(expressao.length()) == ')'))
+                // throw new Exception("Sua expressao e invalida");
         
         return true;
     }
@@ -174,7 +188,7 @@ public class Calculadora_1
            }
         }
         if (resultado.Tamanho() > 1)
-            throw new Exception("Expressão inválida");
+            throw new Exception("Express?o inv?lida");
         this.result = resultado.getItem();
     }
     
@@ -199,6 +213,7 @@ public class Calculadora_1
         return result;
     }
     
+    @Override
     public String toString()
     {
         return  "O resultado da Expressao e: " + (this.result);
