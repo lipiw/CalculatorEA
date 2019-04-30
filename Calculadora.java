@@ -1,4 +1,4 @@
-package calculadora;
+package calculadora_p;
 import java.util.StringTokenizer;
 
 public class Calculadora
@@ -33,40 +33,43 @@ public class Calculadora
 
     public static boolean valida(String expressao)throws Exception
     {
-        int parenteses = 0;
+        int abreparenteses = 0;
+        int fechaparenteses = 0;
+        int operador=0;
               
             
             for(int i=0; i<expressao.length(); i++)
             {
-                if(expressao.charAt(i) == '(')
-                parenteses++;
-                
+               
+                if(expressao.charAt(i) == '('){
+                abreparenteses++;
+                 
+                if(isOperadores(expressao.charAt(i)+""))
+                operador++;
+                }
                 if(expressao.charAt(i) == ')')
-                parenteses--;
+                fechaparenteses++;
+                
+              if(abreparenteses < fechaparenteses || operador==0)
+                throw new Exception("Expressão invalida");
+            
             }
             
-            if(parenteses!=0)
-            throw new Exception("Expressão incorreta");
-            
+                
             
               for(int i=0; i<expressao.length(); i++)
               {
-               if((expressao[i] == isOperadores()) && (expressao[i+1] == isOperadores()))
-                   throw new Exception("Expressão incorreta");
+               if(isOperadores(expressao.charAt(i) + "") && isOperadores(expressao.charAt(i+1) + ""))
+                   throw new Exception("Expressão incorreta: dois operadores juntos");
+               
+               else if(isOperadores(expressao.charAt(0) + "") || isOperadores(expressao.length() + ""))
+                   throw new Exception("Expressão incorreta: começou ou terminou a expressão com o operadores");
               }
-            
-            
-            //fazer uma condição para que o primeiro nem o ultimo não seja isOperador()
-            
-            
-            
-            //else if((expressao.charAt(0) == '(')||(expressao.charAt(expressao.length()) == ')'))
-                // throw new Exception("Sua expressao e invalida");
         
         return true;
     }
 
-    public boolean isOperadores (String op)
+    public static boolean isOperadores (String op)
     {   
         String oper = "^*/+-";
         return oper.contains(op);
